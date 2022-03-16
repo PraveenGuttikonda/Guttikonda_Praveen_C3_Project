@@ -132,11 +132,60 @@ class RestaurantTest {
         /* End of Asserts Section */
 
     }
+    //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
   // ****** Failing Test cases for Total order values */
 
+    @Test
+    public void adding_items_should_give_correct_total_OrderValue() {
+        System.out.println("In Method - adding_items_should_give_correct_total_OrderValue()");
 
-    //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        List<String> itemsSelected = new ArrayList<>();
+        itemsSelected.add("Sweet corn soup");
+        itemsSelected.add("Vegetable lasagne");
+        int totalMenuItemsPrice = sweetCornSoupPrice + vegetableLasagnePrice;
+        System.out.println(" Actual sum of prices: " + totalMenuItemsPrice);
+
+        int totalSelectedOrderValue = restaurant.getTotalOrderValue(itemsSelected);
+        /* Start of Asserts Section */
+        assertEquals(totalSelectedOrderValue,totalMenuItemsPrice);
+        /* End of Asserts Section */
+        System.out.println(" Selected Total Order Value: " + totalSelectedOrderValue);
+
+
+    }
+    @Test
+    public void reducing_items_should_give_correct_total_OrderValue() {
+        System.out.println("In Method - reducing_items_should_give_correct_total_OrderValue()");
+
+        List<String> itemsSelected = new ArrayList<>();
+        itemsSelected.add("Sweet corn soup");
+        itemsSelected.add("Vegetable lasagne");
+        int initialTotalMenuItemsPrice, intialTotalSelectedOrderValue;
+        initialTotalMenuItemsPrice = sweetCornSoupPrice + vegetableLasagnePrice;
+        System.out.println(" Initial sum of prices: " + initialTotalMenuItemsPrice);
+
+        intialTotalSelectedOrderValue = restaurant.getTotalOrderValue(itemsSelected);
+        /* Start of Asserts Section */
+        assertEquals(intialTotalSelectedOrderValue,initialTotalMenuItemsPrice);
+        /* End of Asserts Section */
+        System.out.println(" Initial Selected Total Order Value: " + intialTotalSelectedOrderValue);
+
+        int revisedTotalMenuItemsPrice , revisedTotalSelectedOrderValue;
+
+        itemsSelected.remove("Vegetable lasagne");
+
+        revisedTotalMenuItemsPrice = initialTotalMenuItemsPrice - vegetableLasagnePrice;
+        System.out.println(" Actual sum of prices after removal: " + revisedTotalMenuItemsPrice);
+        revisedTotalSelectedOrderValue = restaurant.getTotalOrderValue(itemsSelected);
+
+        /* Start of Asserts Section */
+        assertEquals(revisedTotalSelectedOrderValue,revisedTotalMenuItemsPrice);
+        /* End of Asserts Section */
+        System.out.println(" Revised Selected Total Order Value: " + revisedTotalSelectedOrderValue);
+
+    }
+
 
 
 
